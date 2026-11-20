@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ôn tập từ vựng Unit 4</title>
+<meta property="og:title" content="Ôn tập từ vựng Unit 4">
+<meta property="og:description" content="Tiếng Anh 8 · Unit 4: Ethnic Groups of Viet Nam · 40 câu · 35 phút">
+<meta name="description" content="Tiếng Anh 8 · Unit 4: Ethnic Groups of Viet Nam · 40 câu · 35 phút">
+<style>
+  :root{
+    --bg:#f4f7fb; --card:#ffffff; --ink:#1f2a3c; --muted:#5d6b82; --line:#dde4ee;
+    --pri:#2f6fed; --pri-soft:#e8f0ff; --ok:#1e9e5a; --ok-soft:#e6f7ee; --bad:#d93b3b; --bad-soft:#fdecec;
+    --warn:#e59a0b; --warn-soft:#fff6e0;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;font-size:19px;line-height:1.55}
+  body{-webkit-user-select:none;user-select:none}
+  input{-webkit-user-select:text;user-select:text}
+  .screen{display:none;min-height:100vh}
+  .screen.on{display:block}
+  .wrap{max-width:860px;margin:0 auto;padding:24px 18px 120px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 24px;margin:16px 0;box-shadow:0 2px 6px rgba(20,40,80,.04)}
+  h1{font-size:1.6rem;margin:.2em 0}
+  h2{font-size:1.2rem;margin:28px 0 6px;color:var(--pri)}
+  .muted{color:var(--muted)}
+  label{display:block;font-weight:600;margin:14px 0 6px}
+  .field{width:100%;font-size:1.05rem;padding:12px 14px;border:2px solid var(--line);border-radius:10px;background:#fff;color:var(--ink)}
+  .field:focus{outline:none;border-color:var(--pri)}
+  .btn{display:inline-block;border:none;border-radius:12px;padding:14px 26px;font-size:1.05rem;font-weight:700;cursor:pointer;
+    background:var(--pri);color:#fff;font-family:inherit}
+  .btn:hover{filter:brightness(1.07)}
+  .btn.ghost{background:var(--pri-soft);color:var(--pri)}
+  .btn.big{width:100%;padding:16px;font-size:1.15rem;margin-top:18px}
+  .rules{background:var(--warn-soft);border:1px solid #f3dc9f;border-radius:12px;padding:14px 18px;margin-top:18px;font-size:.95rem}
+  .rules ul{margin:6px 0 0;padding-left:20px}
+  .err{color:var(--bad);font-weight:600;margin-top:8px;min-height:1.2em}
+  .info{background:var(--pri-soft);border-radius:12px;padding:12px 16px;margin-top:14px;font-size:.95rem}
+
+  /* thanh trên cùng khi làm bài */
+  .topbar{position:sticky;top:0;z-index:5;background:#fff;border-bottom:1px solid var(--line);}
+  .topbar .in{max-width:860px;margin:0 auto;padding:10px 18px;display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+  .who{font-weight:700}
+  .timer{font-variant-numeric:tabular-nums;font-weight:800;font-size:1.15rem;background:var(--pri-soft);color:var(--pri);padding:4px 12px;border-radius:8px}
+  .timer.low{background:var(--bad-soft);color:var(--bad)}
+  .prog{color:var(--muted);font-size:.95rem}
+
+  /* câu hỏi */
+  .q{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:12px 0}
+  .qtext{font-size:1.08rem}
+  .num{display:inline-block;min-width:30px;height:30px;line-height:30px;text-align:center;border-radius:50%;background:var(--pri);color:#fff;font-weight:700;font-size:.9rem;margin-right:8px}
+  .opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+  @media (max-width:600px){.opts{grid-template-columns:1fr}}
+  .opt{display:flex;align-items:center;gap:10px;padding:12px 14px;border:2px solid var(--line);border-radius:12px;background:#fff;cursor:pointer;font-size:1.02rem;text-align:left;font-family:inherit;color:var(--ink)}
+  .opt b{display:inline-block;width:28px;height:28px;line-height:28px;text-align:center;border-radius:50%;background:var(--bg);flex:0 0 28px}
+  .opt.sel{border-color:var(--pri);background:var(--pri-soft)}
+  .opt.sel b{background:var(--pri);color:#fff}
+  .blank{display:inline-block;width:170px;max-width:60vw;font-size:1.02rem;padding:6px 10px;margin:2px 4px;border:none;border-bottom:3px solid var(--pri);background:var(--pri-soft);border-radius:6px 6px 0 0;color:var(--ink);font-family:inherit}
+  .blank:focus{outline:none;background:#dce8ff}
+  .line{min-height:54px;border:2px dashed var(--line);border-radius:12px;padding:8px;margin-top:12px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+  .line:empty::before{content:"Bấm vào các từ bên dưới theo đúng thứ tự";color:#a3afc2;font-size:.95rem;padding-left:6px}
+  .bank{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+  .tile{padding:8px 14px;border-radius:10px;border:2px solid #c9d6ee;background:#fff;font-size:1.02rem;cursor:pointer;font-family:inherit;color:var(--ink)}
+  .line .tile{background:var(--pri-soft);border-color:var(--pri)}
+  .submitbar{text-align:center;margin-top:30px}
+  .note{color:var(--muted);font-size:.95rem;margin:0 0 8px}
+  .secbox{margin-bottom:10px}
+  .wbank{position:sticky;top:calc(var(--tb,58px) + 6px);z-index:4;background:#fffdf3;border:2px solid #f0d98a;border-radius:14px;padding:10px 12px;display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 6px;box-shadow:0 4px 10px rgba(20,40,80,.06)}
+  .wbank:empty::before{content:"✓ Đã dùng hết các từ (chạm vào từ trong ô để trả lại)";color:#a3afc2;font-size:.92rem}
+  .chip{padding:8px 16px;border-radius:999px;border:2px solid #c9d6ee;background:#fff;font-size:1.05rem;font-weight:600;cursor:grab;font-family:inherit;color:var(--ink);touch-action:manipulation}
+  .chip.pick{background:var(--pri);border-color:var(--pri);color:#fff}
+  .slot{display:inline-flex;align-items:center;justify-content:center;min-width:130px;min-height:40px;padding:4px 12px;margin:2px 4px;vertical-align:middle;
+    border:2px dashed #9db6e8;border-radius:10px;background:var(--pri-soft);color:var(--pri);font-weight:700;cursor:pointer;font-size:1.02rem}
+  .slot.full{border-style:solid;border-color:var(--pri);background:#fff}
+  .slot.over,.slot.ready{background:#dce8ff;border-color:var(--pri)}
+  .mgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media (max-width:700px){.mgrid{grid-template-columns:1fr}}
+  .mrow{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+  .mrow .mean{flex:1}
+
+  /* màn hình chặn khi thoát toàn màn hình */
+  .overlay{position:fixed;inset:0;z-index:50;background:rgba(244,247,251,.98);display:none;align-items:center;justify-content:center;padding:20px}
+  .overlay.on{display:flex}
+  .overlay .box{max-width:520px;background:#fff;border:2px solid var(--warn);border-radius:18px;padding:28px;text-align:center}
+  .overlay .icon{font-size:2.6rem}
+  .modal .box{border-color:var(--pri)}
+
+  /* kết quả */
+  .score{text-align:center}
+  .score .big{font-size:3.4rem;font-weight:800;color:var(--pri);line-height:1.1}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:16px}
+  .stat{background:var(--bg);border-radius:12px;padding:10px 12px;text-align:center;font-size:.92rem}
+  .stat strong{display:block;font-size:1.2rem}
+  .r{border-left:6px solid var(--ok);}
+  .r.no{border-left-color:var(--bad)}
+  .tag{font-weight:800;margin-left:6px}
+  .r .tag{color:var(--ok)} .r.no .tag{color:var(--bad)}
+  .ans{margin-top:8px;font-size:.98rem}
+  .r .ans .you{color:var(--ok)} .r.no .ans .you{color:var(--bad)}
+  .ans .right{color:var(--ok);font-weight:700}
+  .exp{margin-top:6px;background:var(--bg);border-radius:8px;padding:8px 12px;font-size:.93rem;color:var(--muted)}
+  .send{margin-top:14px;font-weight:600;font-size:.95rem}
+  .send.ok{color:var(--ok)} .send.bad{color:var(--bad)} .send.wait{color:var(--muted)}
+</style>
+</head>
+<body>
+
+<!-- ============ MÀN HÌNH BẮT ĐẦU ============ -->
+<section id="scr-start" class="screen">
+  <div class="wrap">
+    <div class="card">
+      <h1 id="t-title"></h1>
+      <div class="muted" id="t-sub"></div>
+      <div class="info" id="t-info"></div>
+
+      <label for="inName">Họ và tên</label>
+      <input id="inName" class="field" autocomplete="off" placeholder="Ví dụ: Nguyễn Minh Anh">
+      <label for="inClass">Lớp</label>
+      <div id="classBox"></div>
+      <div class="err" id="startErr"></div>
+
+      <div class="rules">
+        <strong>⚠ Lưu ý trước khi làm bài</strong>
+        <ul>
+          <li>Khi bấm <b>LÀM BÀI</b>, bài sẽ mở <b>toàn màn hình</b> và bắt đầu tính giờ.</li>
+          <li>Mỗi lần em <b>thoát toàn màn hình, chuyển tab, chuyển ứng dụng hay tải lại trang</b> đều được ghi lại và gửi cho cô.</li>
+          <li>Điểm và đáp án chỉ hiện ra <b>sau khi em bấm NỘP BÀI</b>.</li>
+        </ul>
+      </div>
+      <div class="info" id="prevInfo" style="display:none"></div>
+      <button class="btn big" id="btnStart">LÀM BÀI</button>
+      <button class="btn ghost big" id="btnReview" style="display:none">Xem lại kết quả lần trước</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MÀN HÌNH LÀM DỞ (sau khi tải lại trang) ============ -->
+<section id="scr-resume" class="screen">
+  <div class="wrap">
+    <div class="card" style="text-align:center">
+      <div style="font-size:2.4rem">⏸</div>
+      <h1>Bài làm đang dở</h1>
+      <p id="resumeMsg"></p>
+      <p class="muted">Việc tải lại / mở lại trang đã được ghi lại. Thời gian vẫn tiếp tục tính.</p>
+      <button class="btn big" id="btnResume">TIẾP TỤC LÀM BÀI</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MÀN HÌNH LÀM BÀI ============ -->
+<section id="scr-quiz" class="screen">
+  <div class="topbar"><div class="in">
+    <span class="who" id="who"></span>
+    <span class="prog" id="prog"></span>
+    <span class="timer" id="timer">00:00</span>
+  </div></div>
+  <div class="wrap">
+    <div id="quizBody"></div>
+    <div class="submitbar"><button class="btn big" id="btnSubmit">NỘP BÀI</button></div>
+  </div>
+</section>
+
+<!-- ============ MÀN HÌNH KẾT QUẢ ============ -->
+<section id="scr-result" class="screen">
+  <div class="wrap">
+    <div class="card score" id="scoreCard"></div>
+    <div id="resultBody"></div>
+    <div class="submitbar" id="resultBtns"></div>
+  </div>
+</section>
+
+<!-- Lớp chặn khi thoát toàn màn hình -->
+<div class="overlay" id="guard">
+  <div class="box">
+    <div class="icon">⚠️</div>
+    <h2 style="color:var(--warn);margin-top:6px">Em đã thoát chế độ toàn màn hình</h2>
+    <p>Lần thoát này đã được ghi lại và sẽ gửi cho cô. Bấm nút bên dưới để quay lại làm bài.</p>
+    <p class="muted" id="guardCount"></p>
+    <button class="btn big" id="btnGuard">QUAY LẠI LÀM BÀI</button>
+  </div>
+</div>
+
+<!-- Hộp xác nhận nộp bài -->
+<div class="overlay modal" id="modal">
+  <div class="box">
+    <h2 style="margin-top:0">Nộp bài?</h2>
+    <p id="modalMsg"></p>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button class="btn ghost" id="btnCancel">Làm tiếp</button>
+      <button class="btn" id="btnConfirm">Nộp bài</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* =====================================================================
+   PHẦN 1 — CẤU HÌNH (giáo viên sửa ở đây)
+   ===================================================================== */
+const CONFIG = {
+  title: "Ôn tập từ vựng Unit 4",
+  subtitle: "Tiếng Anh 8 · Unit 4: Ethnic Groups of Viet Nam · 40 câu · 35 phút · Mỗi lần làm là một đề khác nhau",
+  quizId: "G8-U4-VOCAB-REVIEW",   // giữ nguyên để kết quả vào cùng chỗ trong Google Sheet
+  sheetUrl: "",                   // ⚠ dán lại link Web App (đuôi /exec) giống file cũ
+  timeLimitMin: 35,               // hết 35 phút tự nộp
+  scoreScale: 10,
+  allowRetry: true,               // làm nhiều lần, mỗi lần bốc đề mới
+  classes: []                     // ví dụ ["8A1","8A2"]; để [] thì HS tự gõ tên lớp
+};
+
+/* Cấu trúc mỗi đề (bốc ngẫu nhiên từ kho 164 câu):
+   Part 1 – Matching: 10 nghĩa (kho 53 từ) + 2 từ thừa
+   Part 2 – Điền từ trong khung: 2 khung × 5 câu (kho 50 câu), mỗi khung thừa 1 từ
+   Part 3 – Trắc nghiệm: 10 câu (kho 31 câu), trộn thứ tự A B C D
+   Part 4 – Dạng từ: 10 câu (kho 30 câu) */
+const PAPER = { match: 10, matchExtra: 2, box: [5, 5], mcq: 10, wf: 10 };
+const BANK_DATA = "91Vfi4Cb1ZWa0VXYlJGI6s6uhTHIo5WrDTHIudquhPGInknclZ3JgUXYTJiOiUmIsICb1ZWa0VXYlJmI6ISYiwiIukSe0VXYlJGKg81XfBSeyVmdgUmchBCrDjGUgU3UgcmbgO8bIBibpByckxWZpZGIkV2YhJnclRHIlhGViojIxJyes0nIuI3bmBCduV3bjNWYgojbhackEDSahqb40BibHub4phGIsUXg7Geao5GIRub4zByr7G+ZuByp7GOaDJiOiUmIsICduV3bjNWYiojIhJCLi4ibvlGdhxWdw9GcgUGa0BiZvBCdz9WbgI3bmBSK05WdvN2YhhCIf91XgUGbw9WZwBCaul2SgUGaUJiOiEnI7xSfi4CZlpXaud2bjVmcgozMWByKgMXY3ByZul5uhHJxgs4uhLkI6ISZiwiIkV2cp52ZvNWZyxHZlpXaud2bjVmciojIhJCLi4SMyAjMg4Wag80QTVkTVBSeiBSKu9Wa0lmbn92YlJHKg81XfBychdHIlNmbhRGIlJ7wYJiOiEnI7xSfi4Sg7Gudgk2j7GeanBCLvl6wsBybpOMarBSPgQXYgQWZsxWarNHIlJmI6ISZiwiIsVnZsl2azxHb1ZGbsl2azxHZlxGbpt2ciojIhJCLi4yc0ZWYyNWak5WYoByZul2ah1GI0FGIpwGbpt2coAyXf9FIlJXYgUGbw9WZwByYp5Ga0VGI55WYNJiOiEnI7xSfi4yct9GdzV3YgIphiDSdBub4phmbgE5uhPHInUmchdCIrub40ByZul5uhDJxiojIlJCLiMXbvR3c1NmI6ISYiwiIuQWZzlGdjFmcwBicldmbvxGIv5GIlJXYgkSbvR3c1NGKg81XfBCZs9GIl12bTJiOiEnI7xSfi4Cb1Zmc19GbvNGI6s6uhTHIo5WrDTHIudquhPGInMXZtVHdz92YnAyq7GOdggmbhRGIjt5uhDrxyRlI6ISZiwiIsVnZy9GbvNGfsVnZyV3bs92YiojIhJCLi4ycl1Wd0N3bjBSKyV3bs92YoAyXf9FIylWZoRHIy9mZgMXdv1WYmBSZyFGIn52bthEIlhGViojIxJyes0nIuUmc1RHb1NGI6s6uhTHIo5WYkBibnqb4jByJoNWaydCIrub40BCau16w0BSdhNlI6ISZiwiIlJXd0xWdjJiOiEmIsIiLzBXdvJ3ZgMWauhGdlBCN1ACa0l2dgkCbhJXd0xWdjhCIf91Xgg2YpJHIhBychhGItFmTgQXZpZlI6IScisHL9JiLkVGdhJ3bjVGZgozMWByKgUmYgcmbZub4RSMILub4CJiOiUmIsICZlRXYy92YlRmI6ISYiwiIuMnbyVGd0FGcgwWdmlGd1FWZiBCa0l2dgkSZ0FmcvNWZkhCIf91XgUmchBSbDSMaDBSZoRHIm9GIzV2c19GagUGaUJiOiEnI7xSfi4CbhVHdpJXawNHI6s6uhTHIo5WrDTHIudquhPGInUmZpx2Jgs6uhTHIo5WYkByYbub4wascUJiOiUmIsICbhVHdpJXawNnI6ISYiwiIuUmc1RXYuBCa0l2dgQWZ0NWZu52bjBSZmlGbgkCdpJXawNHKg81XfBSYgUmdhhGIzBXdvJ3ZgMWauhGdlBCdz9WTiojIxJyes0nIucmbpR3clJXZ05WagozYHub4pZHIxub4zBSYnub4jBCdlqb4oNGIo5WrDTHIJub4oNGIrub40BCau16wUJiOiUmIsIyZulGdzVmclRnbpJiOiEmIsIiLzBXdvJ3ZgMWauhGdlBiZvByclZXasBSZoRHI0V3biFGIuJXYlxGIvRHIpQ3clJXZ05WaoAyXf9FIzdCdJJiOiEnI7xSfi4CZlZXasBiOuFqxRSMIpub4otGIhOcdxBikGKOInQ3chBHIlhGdg4WSnIiOiUmIsICZlZXasJiOiEmIsIiLzV2c19GagQHbpR3cg4WagkSZ2lGboAyXf9FIlxGcvVGcgkWoDjGVgUGa0BCL0NXYwBSZoRHIulkI6IScisHL9JiLn5WatYFIrACdhBCZv92ZiojIlJCLicmbpZXYldnI6ISYiwiIukSZ2FWZ3hCIf91XgQXYgQ2bvdGI5JXZ2BSZyFGIuVWbvdHIn5Wn7GOsG3kI6IScisHL9JiLn5Wa6FWbhBiO01quhbHIxub4zBSYnub4jBCdlqb4oNGIo5WrDTHIJub4oNGIrub40BCau16wUJiOiUmIsIyZulmeh1WYiojIhJCLi4SKlpXYtFGKg81XfBycpBibl12b3ByZu15uhDrxNBiZvBCbsl2azByZulmdhV2dgUGaUJiOiEnI7xSfi4ibjqb4zByY3qb4RSMI9ASe0xWYpNWZwNHI6s6uhTHIo5WYkBibnqb4jByJhdCI1F2UiojIlJCLikHdpxWYpNWZwNHf5RHbhl2YlB3ciojIhJCLi4SZsB3blBHIn52bthEIlhGdgY2bgkCbhl2YlB3coAyXf9FIhBycpBSk7G+Ygcmbvqb4oRlI6IScisHL9JiLzRnblNXZyBXZyBiOuFqxRSMIpFquhTHIud4uhnGagwCdtOMIRub4zByr7G+ZuByp7GOaDJiOiUmIsIyc05WZzVmcwVmciojIhJCLi4ibpFGduV3btBSZoRHIm9GIk92ZgUGa0BSKu9Wa0FGduV2clJHclJHKg81XfBSZ1RXY0NHIzlGaUJiOiEnI7xSfi4yl7G+Zgcmbxqb4iBSPg4WZk92b3BiOrub40BCau16w0Bibnqb4jByq7GOdggmbhRGIjt5uhDrxyRlI6ISZiwiIuVGZv92diojIhJCLi4yclNXdvhGIn52bsBSKk92b3hCIf91Xg4WagUmdpxGIlxGcvVGcgo6wQSMIKOMIlhGViojIxJyes0nIuQWZoNXasJWY0NXZgojbhackEDSq7GOarBSoDXXcgIphiDyJvdWYnIiOiUmIsICZlh2cpxmYhR3clJiOiEmIsIiLvdWYgMnchVWegADMxACdltmch1GIlhGdgkCazlGbiFGdzVGKg81XfBycyV2ZhxGbpZHIlhGViojIxJyes0nIuU6uhPGIjFquhjmbg0DIzRnbl1WdyR3culGIsF2YpNXdtJiOiUmIsICbhNWazVXbiojIhJCLi4yc05WZtVnc0NnbpBSKjl2c11GKg81XfBSeuFWbgU2ah1GIvRHIkV2c1BycpBybvJWbhJkI6IScisHL9JiL05WY0J3bw1Wagozq7GOdggmbtOMdg42p6G+YgcycsFmdpR3clZ2Jgs6uhTHIo5WYkByYbub4wascUJiOiUmIsICduFGdy9GctlmI6ISYiwiIuMHbhZXa0NXZmBSKlNmbhRncvBXbphCIf91Xgknbh1GIulGIkV2c1BSZyFGIzdmbvdkI6IScisHL9JiLuN5uhTHIvNquhLGIxub4zBSPg42bpRXY2JXZzVmcwBiOrub40BCauFGZg42p6G+YgcSZoR1JgUXYTJiOiUmIsIibvlGdhZnclNXZyBnI6ISYiwiIuQnbhRncvBXbpBSeyVmdgMXagUmc1RHb1NGIsFmbvlGdpRWYyRHIm9GIpUmdyV2clJHcoAyXf9FIlhGViojIxJyes0nIuMHdzlmc19GdgoTadub4wa8ZuBSi7GOajBSdBub4phmbgE5uhPHIrub40BCauFGZg42p6G+YgcSeuFWTnASdhNlI6ISZiwiIzR3cpJXdvRnI6ISYiwiIuIXYllHI5JXZ2VGIhBFIhNFI0l2cpZHIpIXdvRHKg81XfBSeuFWTiojIxJyes0nIuwWYyVHdsV3Ygozq7GOdggmbtOMdg42p6G+YgcycllGdpZXa0NWYnAyq7GOdggmbhRGIjt5uhDrxyRlI6ISZiwiIsFmc1RHb1NmI6ISYiwiIuMXZpRXa2lGdjFGIpUmc1RHb1NGKg81XfBicvZGIkV2c1BycpBSZzV3boBCbh5Wdt12bjBSZoRlI6IScisHL9JiLu9Wa0FGb1B3bwBiOrub40BCauFGZg42p6G+YgcSZoR1JgUXYTJiOiUmIsIibvlGdhxWdw9GciojIhJCLi4CMwADLwATOgQXdvJWYgMXagcmbhl2RgA6wIBiZvBSKlRXYsVHcvBHKg81XfBSZoRlI6IScisHL9JiLzVWa0lmcv5WatBiOpcSZ2lGbnAyq7GOdgcmbZub4RSMKgUXg7Geao5GIRub4zByq7GOdggmbhRkI6ISZiwiIzVWa0lmcv5WatJiOiEmIsIiLz5WahRnb19WbgUGa0BibpBSes5Wah1GIlZXasBSKy9mbp1GKg81XfByYp5Ga0VkI6IScisHL9JiL5RXay9mah1GI6s6uhTHIo5WYkBibnqb4jByJlhGdnASdhNlI6ISZiwiI5RXay9mah1mI6ISYiwiIu0WYOBCdllmVg4WagkicvpWYthCIf91XgUGa0BSZyFGIlxGcvVGcggmbptEIlhGViojIxJyes0nIuwWYu9Wa0lGZhJHdgozq7GOdggmbtOMdg42p6G+YgcSZtVHdz92YnAyq7GOdggmbhRGIjt5uhDrxyRlI6ISZiwiIsFmbvlGdpRWYyRnI6ISYiwiIuUWb1R3cvNGIp42bpRXakFmc0hCIf91Xg42dvByc0lGIzFGagAXdvJ3Zgg2YhVkI6IScisHL9JiLzV3bpdWasVmcgozq7GOdggmbtOMdg42p6G+Ygcycllmbv1WZyV2YnAyq7GOdggmbhRGIjt5uhDrxyRlI6ISZiwiIzV3bpdWasVmciojIhJCLi4ycllmbv1WZyV2Ygkibvl2ZpxWZyhCIf91Xgknbh1GIlZXYoBSZsB3blBHIjlmboRXRiojIxJyes0nIuMnbvlGdpJWaohXZgozq7GOdggmbhRGIudquhPGInMHZs9GanASdhNlI6ISZiwiIu9Wa0lmYphGelx3cu9Wa0lmYphGelJiOiEmIsIiLzVWb1R3cvNGIsFmbvlGdpRWYyRHIm9GIpQXailGa4VGKg81XfByckx2boBiblRnZvBSen9Gbv5Ga0VEIm9GItVXZzVXTgUGaUJiOiEnI7xSfi4SZzJXZ2lGZgozq7GOdggmbtOMdg42p6G+YgcSeyVmdnASdhNlI6ISZiwiIlNnclZXakJiOiEmIsIiLpkHdpNnclZXakhCIf91XgknclZHIzlGItFmTgQXZpZFIulGIzBXdvJ3ZgMWauhGdlBiZvBSZyVHdsV3YgUGaUJiOiEnI7xSfi4Se0l2cyVmdpRGI6s6uhTHIo5WYkBibnqb4jByJsFmc1RHb1N2Jgs6uhTHIo5WrDTHI1F2UiojIlJCLikHdpNnclZXakJiOiEmIsIiLpU2cyVmdpRGKg81XfBCbhJXd0xWdjBiZvBSeyRnb192YgEGIzlGItFmTgQXZpZlI6IScis3W6IiZ3JCLd1nIu8WoDn2Zg4GtDTHIjF6wjBSPgMnbvl2ZpxWZyJiOiUmIsIibvl2ZpxWZyJiOismIs0lIzB3byNmIsIycu9Wa0FGb1B3bwJCLiMnbvl2ZlJnIbpjIvJCLiMnbvl2ZpxWZyJiOiEmIsIiLtFmTgQXZpZFIulGIf91Xg82d0BSZyFGItNXajlGbvhGdhNEIk5WYg02cphGZkVnQiojIxJyes0nIuEmcg4GrDjmbg0DIr92bsJXZ29mI6ISZiwiIzt2bvxmclZ3biojIrJCLdJyclNXahJnIsIyclZnclNXZyBnIsIyc05WZzVmcwVmcislOi8mIsIycr92bsJXZ29mI6ISYiwiIuU2ahxGIsVnZpRXdhVmYgEGIf91Xg02bvJHIsVGdvhGIlhGViojIxJyes0nIuo6woBHIgO8Yg4Wg7GeaRSMIuN5uhHJxg0DIz52bpRXY05WYsBHIlVmZm92YiojIlJCLi42bpRXY05WYsBnI6IyaiwSXiMXbl9GciwiIsl2bzJCLiMnbvl2ZlJnIbpjIvJCLiMnbvlGdhRnbhxGciojIhJCLi4yXf9FIlVmZm92Yg42bgsmcvdHIzRmbhxGanlGSgwWYyRnblNEIlhGdg4WagUGbw9WZwBSeuFWTiojIxJyes0nIuk2m7GeanByv6GOaUBibjqb4zBSaEBSPgUGdpNFIldWY0lmclhEIkxmcvdlI6ISZiwiIlRXaTBSZnFGdpJXZIBCZsJ3bXJiOismIs0lIz52bpdWZyJCLiMnbvlGdhRnbhxGciwiIzRXZrJXYtBicpFWLuVGcvJyW6IybiwiIzVGdpNFIldWY0lmclhEIkxmcvdlI6ISYiwiIu0WYOBCdllmVg4Wag81XfBSZoRHIm9GIl52bgMXagknchVHdj5WYTBibha8Ugk7uh3kI6IScisHL9JiLn52o7GOsGTHIjl6uhLGIjF6wjBSPgMXZ1RXY0NnI6ISZiwiIlVHdhR3ciojIrJCLdJycw9mcjJCLiM3Zu92ZiwiIzR3cvBnIbpjIvJCLiMXZ1RXY0NnI6ISYiwiIuMXYoRGZ1JEIk5WYgMHZvdGIm9GIf91XgUmdhhGIzVGbw1WZ0BSeuFWTiojIxJyes0nIu42o6G+cgM2t6GekEDSPgkHdsFWajVGczJiOiUmIsISe0xWYpNWZwNnI6IyaiwSXi42bpdWZyJCLiUmc1R3YlRXaoNmchJCLiUWd0FGdzJyW6IybiwiI5RHbhl2YlB3ciojIhJCLi4yZuFWaHBCoDjEIm9GIf91XgMXdv1WYmBSYgMXagE5uhPGIn52r6GOaUJiOiEnI7xSfi4Sk7G+cgU3g7GeaoRHI9ASe0lmcv5WatJiOiUmIsISe0lmcv5WatJiOismIs0lIu9Wa0FGb1B3bwJCLiU2cyVmdpRmIsISe0lmcvpWYtJyW6IybiwiI5RXay9mbp1mI6ISYiwiIuknc05WdvNGIhBibpBSZsB3blBHIm9GIwV3bydGIsxWYtNHIhBycpBCc19mcnByXf9FIjlmboRXZg4WQiojIxJyes0nIuk4uh3GIJub40BCL1hGcgcmb0O8Yg0DIlRXYy9mYhxWZiojIlJCLiUGdhJ3biFGblJiOismIs0lIrN2b0NXZ2lGbiwiI5RXay9mbp1mIsIiblR2bvdnIbpjIvJCLiUGdhJ3biFGblJiOiEmIsIiLzxWahRXZkBCbsFWbzBSeuFWbggGdpdHIs81XfBSeyVmdgUmchBycl1Wd0N3bjBycnUGbw9WZwByZu9WbIBSZoRlI6IScisHL9JiLvF6wRSMIjl5uhHJxg0DIlVXcp5WdiojIlJCLiUWdxlmb1JiOismIs0lI5JHdsV3bwJCLikHdpJ3bqFWbiwiI5RXazJXZ2lGZislOi8mIsISZ1FXauVnI6ISYiwiIuMXbvR3c1NGIf91Xg42dvByc0lGIzFGagAXdvJ3ZgMWauhGdlBCajFWRiojIxJyes0nIuk2o6GudgQ3h7GOZg0DIoR3bsNGIlZXYldnI6ISZiwiIlZXYldnI6IyaiwSXis2bvxmclZ3biwiIlZnclNXZyBnIsISZzlWYyJyW6IybiwiIlZXYldnI6ISYiwiIuMXbv9Gbg42bggGdvx2YgwWdmlGd1FWZiByXf9FIuVGdm9GIuVWbvdHIjlmboRXRiojIxJyes0nIu42k7GOdg82o6GuYg0DIlZnclNXZyBnI6ISZiwiIlZnclNXZyBnI6IyaiwSXiQnblNXZyBXZyJCLiI3bmBCduV3bjNWYiwiIr92bsJXZ29mIbpjIvJCLiUmdyV2clJHciojIhJCLi4ycwV3bydGIjlmboRXZgY2bgMHdmFmcjBCbh52bpRXakFmc0BSZoRHIf91XgQGb19GazBSZXJiOiEnI7xSfi4yboNGIn5GsGLHdgcmbjub4waMdg0DI05WZzVmcwVmciojIlJCLiMHduV2clJHclJnI6IyaiwSXig2cpxmYhR3clJCLis2bvxmclZ3biwiIlZnclNXZyBnIbpjIvJCLiQnblNXZyBXZyJiOiEmIsIiLlZWasBiZvByc05WZtVGblBSZ2lmZgUGa0ByXf9FIlNWayBSerNWa0NHIlhGdgY2bgMnc19GbvNGIlZXamBSZoRlI6IScisHL9JiLn52byRHIyOsc0BSahZHIn52sDHJxg0DIulGIlx2byBSYgkXYsBnI6ISZiwiIulGIlx2byBCduFGdy9GctlGIuFGIzlXYsBnI6IyaiwSXiU2ahRnIsISZrFWbiwiIvRmIbpjIvJCLikXYsBnI6ISYiwiIuMHZuFGbodWaIBCbhJHduV2QgUGa0BibpBSZsB3blBHIm9GIlZWasBCbhVHdpJXawNHIlhGdg4WagUGbvJHI05WY0J3bw1Wag4WYg81XfBycn52bHJiOiEnI7xSfi4Safub4iBibtqb4o5GIn5GtDPGIjN6uhDrxRSMI9ASeiBCZlpXaud2bjVmcgUmYiojIlJCLiQWZ6lmbn92YlJnI6IyaiwSXiQWZ05WZzVmcwVmciwiIkV2cpFmciwiIkVGazlGbiFGdzVmIbpjIvJCLiQWZ6lmbn92YlJnI6ISYiwiIukTO5EDIulGIlRXaTBSZnFGdpJXZIBCZsJ3bXBSYgMXYg80QTVkTVBSeiByXf9FIzF2dg4WQgkWm7GOSiojIxJyes0nIuMmuDLHdg42v6GearBSPgUmc1R3YlRXaoNmchJiOiUmIsISZyVHdjVGdph2YyFmI6IyaiwSXis2YvR3clZXasJCLiwWavNnIsIibvlGdhxWdw9GcislOi8mIsISZyVHdjVGdph2YyFmI6ISYiwiIuMncld3b0ByajlmciBCb1ZWa0VXYlJGIoRXa3ByXf9FIsFWajVGczBSYgUmdhhGIlxGcvVGcg02gEj2QgUGaUJiOiEnI7xSfi4yZuR7wyBCoDjmbg0DIlNXdvhGIsFmb11WbvNmI6ISZiwiIlNXdvhGIsFmb11WbvNmI6IyaiwSXi0WZvBnIsIyZu92ZiwiIlRXdsZmIbpjIvJCLiU2c19GagwWYuVXbt92YiojIhJCLi4iZv9mcgcWaiBSYgMXYoBCZuFGIsxWY0BycpBSZsB3blBHIyFmboFmQgUGa0BiZvByXf9FIlhGViojIxJyes0nIukWl7GubgM6uhj2Yg0DI0V2ayFWbgcmbpRXYvxmZiojIlJCLiQXZrJXYtByZulGdh9GbmJiOismIs0lIu9Wa0FGduFGbwJCLiU2c19GagwWYuVXbt92YiwiI0V2ayFWbgIXah1iblB3bislOi8mIsICdltmch1GIn5Wa0F2bsZmI6ISYiwiIu81XfBSZoRHI0FGIzRXYvJGIu9GIzR2bvdGIsxWZzBCZuFGI5VnYgUGbw9WZwBCLhRHblREIn52brVWTgUGa0BibJJiOiEnI7xSfi4yZuFGa0ByYtqb4iByZul5uhXncg0DIzRGbllmZgQWZjFmcyVGdiojIlJCLiMHZsVWamBCZlNWYyJXZ0JiOismIs0lIzVGd1xmZiwiIzVWd0FGdzJCLiMHdltmch1GIn5Wa0F2bsZmIbpjIvJCLiMHZsVWamBCZlNWYyJXZ0JiOiEmIsIiLzxGbphGIlhGdg42bg81XfBCb1ZWa0VXYlJGIlV2cg4WYjBSdvlHIsEGUgE2Ug8GdgkXY3BSZoRHIu9kI6IScisHL9JiLn52k7Guc0BCdlqb4RSMI9ACbp92ciojIlJCLiwWavNnI6IyaiwSXiUWd0FGdzJCLi0WZvBnIsICcvJ3YislOi8mIsICbp92ciojIhJCLi4SYlRHIn5Wa39mcnBicvZGIk92bnBSeyVmdgMXagEWZyFGIzlGa0BibpByXf9FIlhGViojIxJyes0nIucmbTub4yRHI5J6wjBSPgA3byNmI6ISZiwiIzB3byNmI6IyaiwSXis2YvR3clZXasJCLiknc0xWdvBnIsICbp92cislOi8mIsICcvJ3YiojIhJCLi4SY0xWZEByZu92al1EIlhGdg4WagMncl1mchZGIm9GIf91Xg4Wah1GIlhGdgMXagU2YpJlI6IScisHL9JiLuFWanBibiOMZgMWo6GOauBSPgMWazVXbgsGbvZmI6ISZiwiIrx2bmJiOismIs0lI5RXay9mah1mIsISZ0FmcvJWYsVmIsIiblR2bvdnIbpjIvJCLisGbvZmI6ISYiwiIuMWazVXbg81XfBCd19mYhBCajVXbgc3butGI0dibvRGIlxGcvVGcgcmb19Wegknbh1kI6IScisHL9JiL5B6wiByZuBrxyRHI9ACdpJWaohXZiojIlJCLiQXailGa4VmI6IyaiwSXiMXZ2FWZ3JCLiMXZzlWYyJCLiM3av9GbyVmdvJyW6IybiwiIzRXailGa4VmI6ISYiwiIuMHc19mcnByYp5Ga0VGIm9GIzVWb1R3cvNGIk5WYgMHbv9Gdgknbh1GIf91Xg0WdlNXdtBSZoRlI6IScisHL9JiLtN6wsBibDub4pJHdgMWq7GOajBSl7GOdg0DIz52bpRXailGa4VGIkx2boJiOiUmIsIibvlGdpJWaohXZiojIrJCLdJycu9WanVmciwiIz52bpRXY05WYsBnIsIyc05WZtFmby9mIbpjIvJCLiMnbvlGdpJWaohXZiojIhJCLi4ycl1Wd0N3bjByYp5Ga0VGIm9GIf91XgMHZs9Gag4WZ0Z2bgk3Zvx2buhGdFBiZvBSb1V2c11EIlhGViojIxJyes0nIu4mqDnGdgU5uhTHIn5muDPGIdub4oRHI9Aycy9GdzV2YuFGIwlGazJ3b3JiOiUmIsIycy9GdzV2YuFGIylWZoRHIwlGazJ3b3JiOismIs0lI05WdvN2YhJCLis2bvxmclZ3biwiIoNXasJWY0NXZislOi8mIsICcph2cy92diojIhJCLi4SZt9GagQXYgMncvR3clNmbhBicpVGa0ByXf9FIlxGcvVGcgcmbv1GSgUGaUJiOiEnI7xSfi4SZzJXZ2lGZgozq7GOdggmbtOMdg42p6G+YgcSeyVmdnASdhNlI6ISZiwiIlNnclZXakJiOismIs0lIuVGZv92diwiI5RXay9mah1mIsISe0l2cyVmdpRmIbpjIvJCLiU2cyVmdpRmI6ISYiwiIuUmc1RHb1NGIf91XgknclZHIhBychhGItFmTgQXZpZlI6IScisHL9JiL5RXazJXZ2lGZgozq7GOdggmbhRGIudquhPGInwWYyVHdsV3YnAyq7GOdggmbtOMdgUXYTJiOiUmIsISe0l2cyVmdpRmI6IyaiwSXikHdpJ3bulWbiwiI5RXay9mah1mIsISZzJXZ2lGZislOi8mIsISe0l2cyVmdpRmI6ISYiwiIucmbppXYtFGIzlGItFmTgQXZpZFIm9GIf91XgwWYyVHdsV3YgUGaUJiOiEnI7xSfi4CdZub4jBSPgMHdz9GciojIlJCLiMHdz9GciojIrJCLdJyctV2bwJCLiM3Zu92ZiwiIzVWd0FGdzJyW6IybiwiIzR3cvBnI6ISYiwiIu81XfBiblR2bvdHIu9GIk5WY0NHIlxGcvVGcgo6wQSMIKOMIlhGdgY2bgMXZzV3boBSZoRlI6IScisHL9JiLjp7wzBSYpdGI9Ayaj9GdzVmdpxmI6ISZiwiIrN2b0NXZ2lGbiojIrJCLdJycw9mcjJCLiwWavNnIsISeyRHb19GcislOi8mIsIyaj9GdzVmdpxmI6ISYiwiIu81XfBSZyFGIzV2cy9GagQmbhBycl9GbhZmZ1JGIsM3dvNkI6IScisHL9JiLtdquhPGIhl2Zg0DI5JHdsV3bwJiOiUmIsISeyRHb19GciojIrJCLdJyc0N3bwJCLiMHcvJ3YiwiIrN2b0NXZ2lGbislOi8mIsISeyRHb19GciojIhJCLi4yXf9FIkVGbsF2YgUmchBycrNWdkBCZuFGIz5WZrNWaoNkI6IScisHL9JiLRub4zBibiOMZg0DIu9Wa0FGb1B3bwJiOiUmIsIibvlGdhxWdw9GciojIrJCLdJSe0lmcv5WatJCLi42bpdWZyJCLikHdpJ3bqFWbislOi8mIsIibvlGdhxWdw9GciojIhJCLi4ibvlGbslWbgADMxACd19mYhBycpBSbh5EI0VWaWBiZvByXf9FIlhGViojIxJyes0nIukyh7GObgk4uhTHKg02v6GeaoNGI9AicvZGI05WdvN2YhJiOiUmIsIicvZGI05WdvN2YhJiOismIs0lIwVHIlZXanJCLiI3bmByav9GbiwiIulGIltWY0JyW6IybiwiIy9mZgQnb192YjFmI6ISYiwiIu42bpRXYsVHcvBHIlhGdgY2bgUSN4ACd19mYhByXf9FIlxGcvVGcggmbptEIlhGViojIxJyebpjIxNWbiwSX9JiLup6wpRHIVub40ByZup7wjBSn7GOa0BSPgMncvR3clNmbhBCcph2cy92diojIlJCLiMncvR3clNmbhBicpVGa0BCcph2cy92diojIhJCLi4SZt9GagQXYg81XfBycwV3bydGIjlmboRXZgknbh1GIsMXehRGIsFWajVGczBibPJiOiEnI7xSfi4yl7G+Zgcmbxqb4iBSPg4WZk92b3JiOiUmIs0lIlRXYy9mYhxWZiwiIlVXcp5WdislOiQWYiJCLi4WZk92b3JiOiEmIsIiLn5WakxWa1JGIf91XgcWaiBSYgMXagU2c19GagwWYuVXbt92YgUGaUJiOiEnI7xSfi4CdHub4kBSPgUmdhV2diojIlJCLiUmdhV2diojIhJCLi4ycl1Wd0N3bjBCbh52bpRXakFmc0BSZrFWbg8GdggGdvx2Yg81XfBSZnFGbslmdgUGa0BibpBibl12bXJiOiEnI7xSfi4ybhOckEDyYZub4RSMI9ASZ1FXauVnI6ISZiwSXisGbvZmIsISZzJXZ2lGZislOiQWYiJCLiUWdxlmb1JiOiEmIsIiLlZWasBiZvBSehdHIf91Xg42dvByc0lGIzFGagAXdvJ3ZgMWauhGdlBCajFWRiojIxJyes0nIucmbhhGdgMWr6GuYgcmbZub41JHI9AyckxWZpZGIkV2YhJnclRnI6ISZiwiIzRGbllmZgQWZjFmcyVGdiojIhJCLi4ibvNXYlNHI0NXZ2JXYoBSZoRHIulGIsVnZpRXdhVmYgUmchBSa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";
+
+/* =====================================================================
+   PHẦN 2 — HỆ THỐNG (không cần sửa)
+   ===================================================================== */
+const $ = id => document.getElementById(id);
+const dec = s => JSON.parse(decodeURIComponent(escape(atob(s.split("").reverse().join("")))));
+const enc = o => btoa(unescape(encodeURIComponent(JSON.stringify(o)))).split("").reverse().join("");
+const BANK = dec(BANK_DATA);
+const TOTAL = PAPER.match + PAPER.box.reduce((a, b) => a + b, 0) + PAPER.mcq + PAPER.wf;
+let SECTIONS = [], ALL = [];
+function setPaper(secs){ SECTIONS = secs; ALL = [];
+  secs.forEach((s, si) => s.items.forEach(it => ALL.push(Object.assign({ sec: si }, it)))); }
+function shuffle(a){ a = a.slice(); for (let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+
+/* Bốc một đề mới */
+function makePaper(){
+  // Part 2: chọn các nhóm câu không gây nhầm lẫn đáp án
+  let groups = null;
+  for (let t = 0; t < 300 && !groups; t++){
+    const pool = shuffle(BANK.box), used = new Set(), gs = [];
+    let ok = true;
+    for (const n of PAPER.box){
+      const g = [];
+      for (const it of pool){ if (g.length === n) break; if (used.has(it.a)) continue;
+        if (g.some(x => (x.bad || []).includes(it.a) || (it.bad || []).includes(x.a))) continue;
+        g.push(it); used.add(it.a); }
+      if (g.length < n){ ok = false; break; }
+      gs.push(g);
+    }
+    if (!ok) continue;
+    const extras = [];
+    for (const g of gs){
+      const c = shuffle(BANK.box.map(x => x.a)).find(w => !used.has(w) && !extras.includes(w) && !g.some(x => (x.bad || []).includes(w)));
+      if (!c){ ok = false; break; } extras.push(c);
+    }
+    if (ok) groups = gs.map((g, i) => ({ items: g, extra: extras[i] }));
+  }
+  const stem = w => w.toLowerCase().replace(/s$/, "");
+  const boxWords = new Set(groups.flatMap(g => g.items.map(x => stem(x.a)).concat([stem(g.extra)])));
+  // Part 1: matching (tránh trùng từ với Part 2)
+  const mw = shuffle(BANK.words.filter(w => !boxWords.has(stem(w[0]))));
+  const mItems = mw.slice(0, PAPER.match), mExtra = mw.slice(PAPER.match, PAPER.match + PAPER.matchExtra);
+  // Part 3: trắc nghiệm (tránh trùng đáp án với Part 2)
+  const boxAns = new Set(groups.flatMap(g => g.items.map(x => x.a)));
+  const mcq = shuffle(BANK.mcq.filter(x => !boxAns.has(x.k))).slice(0, PAPER.mcq).map(x => {
+    const opts = shuffle([x.a].concat(x.o)); return { type: "mcq", q: x.q, options: opts, a: opts.indexOf(x.a), exp: x.e }; });
+  const wf = shuffle(BANK.wf).slice(0, PAPER.wf).map(x => ({ type: "fill", q: x.q, a: x.a, exp: x.e }));
+  const secs = [{ title: "Part 1. Match the words with their meanings.",
+      note: "Kéo từ tiếng Anh vào ô bên cạnh nghĩa tiếng Việt phù hợp (hoặc chạm vào từ, rồi chạm vào ô). Có " + PAPER.matchExtra + " từ thừa.",
+      layout: "match", bank: shuffle(mItems.concat(mExtra).map(w => w[0])),
+      items: mItems.map(w => ({ type: "drop", q: w[1], a: w[0] })) }];
+  groups.forEach((g, i) => secs.push({ title: "Part 2. Complete the sentences with the words in the box (" + "AB"[i] + ").",
+      note: "Kéo từ vào chỗ trống phù hợp. Mỗi từ dùng một lần, có 1 từ thừa.",
+      bank: shuffle(g.items.map(x => x.a).concat([g.extra])),
+      items: g.items.map(x => ({ type: "drop", q: x.q, a: x.a, exp: x.e })) }));
+  secs.push({ title: "Part 3. Choose the best answer.", items: mcq });
+  secs.push({ title: "Part 4. Write the correct form of the word in brackets.", note: "Gõ dạng đúng của từ trong ngoặc vào chỗ trống.", items: wf });
+  return secs;
+}
+
+
+const LS = "btvn_" + CONFIG.quizId, LQ = "btvn_queue";
+function load(){ try { return JSON.parse(localStorage.getItem(LS)) || null; } catch(e){ return null; } }
+let S = load() || { attempts: 0 };
+if (S.paper){ try { setPaper(dec(S.paper)); } catch(e){ S.paper = null; S.inProgress = false; S.result = null; } }
+function save(){ S.lastSaved = Date.now(); try { localStorage.setItem(LS, JSON.stringify(S)); } catch(e){} }
+
+const pad = n => String(n).padStart(2, "0");
+function fmt(ms){ ms = Math.max(0, ms|0); const s = Math.floor(ms/1000), h = Math.floor(s/3600), m = Math.floor(s%3600/60);
+  return (h ? h + ":" + pad(m) : pad(m)) + ":" + pad(s%60); }
+const elapsed = () => Date.now() - S.startedAt;
+function log(msg){ S.events.push(fmt(elapsed()) + " " + msg); }
+function show(id){ document.querySelectorAll(".screen").forEach(x => x.classList.remove("on")); $(id).classList.add("on"); window.scrollTo(0,0); }
+const device = /iPhone|iPad|iPod/.test(navigator.userAgent) ? "iPhone/iPad"
+  : /Android/.test(navigator.userAgent) ? "Android" : "Máy tính";
+
+/* ---------- toàn màn hình ---------- */
+const isFS = () => !!(document.fullscreenElement || document.webkitFullscreenElement);
+function enterFS(){
+  const el = document.documentElement, f = el.requestFullscreen || el.webkitRequestFullscreen;
+  const fail = () => { if (!S.noFS){ S.noFS = true; log("Thiết bị/trình duyệt không hỗ trợ toàn màn hình"); save(); } };
+  if (!f) return fail();
+  try { const p = f.call(el); if (p && p.catch) p.catch(fail); } catch(e){ fail(); }
+}
+function exitFS(){ try { if (isFS()) (document.exitFullscreen || document.webkitExitFullscreen).call(document); } catch(e){} }
+function onFSChange(){
+  if (!S.inProgress) return;
+  if (!isFS()){
+    S.fsExits++; log("Thoát toàn màn hình (lần " + S.fsExits + ")"); save();
+    $("guardCount").textContent = "Số lần đã thoát: " + S.fsExits;
+    $("guard").classList.add("on");
+  } else { $("guard").classList.remove("on"); }
+}
+document.addEventListener("fullscreenchange", onFSChange);
+document.addEventListener("webkitfullscreenchange", onFSChange);
+$("btnGuard").onclick = () => { enterFS(); $("guard").classList.remove("on"); };
+
+/* ---------- rời tab / cửa sổ ---------- */
+let away = false, awayStart = 0;
+function leave(why){ if (!S.inProgress || away) return; away = true; awayStart = Date.now(); S.leaves++; log("Rời khỏi bài (" + why + ")"); save(); }
+function back(){ if (!S.inProgress || !away || document.hidden) return; away = false;
+  const d = Date.now() - awayStart; S.awayMs += d; log("Quay lại sau " + Math.round(d/1000) + " giây"); save(); }
+document.addEventListener("visibilitychange", () => document.hidden ? leave("chuyển tab/ứng dụng") : back());
+window.addEventListener("blur", () => setTimeout(() => { if (!document.hasFocus()) leave("chuyển cửa sổ"); }, 150));
+window.addEventListener("focus", back);
+
+/* ---------- chặn thao tác tra cứu đơn giản ---------- */
+document.addEventListener("contextmenu", e => e.preventDefault());
+["copy","cut"].forEach(ev => document.addEventListener(ev, e => e.preventDefault()));
+document.addEventListener("keydown", e => {
+  const k = e.key.toLowerCase();
+  if (e.key === "F12" || ((e.ctrlKey || e.metaKey) && (["u","s","p","c"].includes(k) || (e.shiftKey && ["i","j","c"].includes(k))))) e.preventDefault();
+});
+
+/* ---------- gửi về Google Sheets ---------- */
+function queue(){ try { return JSON.parse(localStorage.getItem(LQ)) || []; } catch(e){ return []; } }
+function setQueue(q){ try { localStorage.setItem(LQ, JSON.stringify(q)); } catch(e){} }
+function post(p){ return fetch(CONFIG.sheetUrl, { method:"POST", mode:"no-cors",
+  headers:{ "Content-Type":"text/plain;charset=utf-8" }, body: JSON.stringify(p) }); }
+async function flush(){
+  if (!CONFIG.sheetUrl) return;
+  for (const p of queue()){
+    try { await post(p); setQueue(queue().filter(x => x.qid !== p.qid)); } catch(e){ /* giữ lại, thử lần sau */ }
+  }
+}
+function send(p){ if (!CONFIG.sheetUrl) return Promise.resolve(false);
+  p.qid = Date.now() + "-" + Math.random().toString(36).slice(2,7);
+  setQueue(queue().concat([p])); return flush().then(() => !queue().some(x => x.qid === p.qid)); }
+function beacon(p){ if (CONFIG.sheetUrl && navigator.sendBeacon)
+  navigator.sendBeacon(CONFIG.sheetUrl, new Blob([JSON.stringify(p)], { type:"text/plain" })); }
+
+function itemLabel(it){ return String(it.type === "mcq" ? it.options[it.a] : String(it.a).split("|")[0]).replace(/<[^>]+>/g, ""); }
+function payload(status){
+  const r = S.result, cur = away ? Date.now() - awayStart : 0;
+  return {
+    sid: S.sid, quizId: CONFIG.quizId, title: CONFIG.title, name: S.name, cls: S.cls, attempt: S.attempts, status,
+    score: r ? r.score + "/" + CONFIG.scoreScale : "",
+    correct: r ? r.correct + "/" + r.total : "",
+    timeUsed: fmt(r ? r.timeMs : elapsed()),
+    fsExits: S.fsExits, leaves: S.leaves, awayTime: fmt(S.awayMs + cur), reloads: S.reloads,
+    device: device + (S.noFS ? " (không có toàn màn hình)" : ""),
+    details: r ? r.items.map((x,i) => (i+1) + " [" + itemLabel(ALL[i]) + "] " + (x.ok ? "✓" : "✗ (" + (x.given || "bỏ trống") + ")")).join(" ; ")
+               : "Đã làm " + answeredCount() + "/" + ALL.length + " câu",
+    events: (S.events || []).join(" | ")
+  };
+}
+
+/* ---------- màn hình bắt đầu ---------- */
+$("t-title").textContent = CONFIG.title;
+$("t-sub").textContent = CONFIG.subtitle;
+document.title = CONFIG.title;
+$("t-info").innerHTML = "📝 " + TOTAL + " câu (mỗi lần làm là một đề khác) &nbsp;·&nbsp; ⏱ " +
+  (CONFIG.timeLimitMin ? "Thời gian: " + CONFIG.timeLimitMin + " phút (hết giờ tự nộp)" : "Không giới hạn thời gian (có tính giờ)");
+$("classBox").innerHTML = CONFIG.classes.length
+  ? '<select id="inClass" class="field"><option value="">-- Chọn lớp --</option>' + CONFIG.classes.map(c => "<option>" + c + "</option>").join("") + "</select>"
+  : '<input id="inClass" class="field" autocomplete="off" placeholder="Ví dụ: 7A4">';
+$("inName").value = S.name || ""; $("inClass").value = S.cls || "";
+
+function startScreen(){
+  if (S.result){
+    $("prevInfo").style.display = "block";
+    $("prevInfo").innerHTML = "Lần làm gần nhất (lần " + S.attempts + "): <b>" + S.result.score + "/" + CONFIG.scoreScale +
+      "</b> — nộp lúc " + new Date(S.submittedAt).toLocaleString("vi-VN");
+    $("btnReview").style.display = "block";
+    $("btnStart").style.display = CONFIG.allowRetry ? "block" : "none";
+    $("btnStart").textContent = "LÀM LẠI";
+  }
+  show("scr-start");
+}
+$("btnReview").onclick = () => { renderResult(); show("scr-result"); };
+
+$("btnStart").onclick = () => {
+  const name = $("inName").value.trim().replace(/\s+/g, " "), cls = $("inClass").value.trim();
+  if (name.split(" ").length < 2) return $("startErr").textContent = "Em hãy nhập đầy đủ họ và tên.";
+  if (!cls) return $("startErr").textContent = "Em hãy nhập/chọn lớp.";
+  $("startErr").textContent = "";
+  enterFS();
+  const secs = makePaper(); setPaper(secs);
+  Object.assign(S, { paper: enc(secs), name, cls, attempts: (S.attempts || 0) + 1, sid: Math.random().toString(36).slice(2,10),
+    inProgress: true, startedAt: Date.now(), answers: {}, fsExits: 0, leaves: 0, awayMs: 0, reloads: 0,
+    events: [], noFS: false, result: null, submittedAt: null });
+  log("Bắt đầu làm bài"); save();
+  beginQuiz();
+  send(payload("Bắt đầu"));
+};
+
+/* ---------- làm dở sau khi tải lại ---------- */
+$("btnResume").onclick = () => { enterFS(); beginQuiz(); };
+
+/* ---------- làm bài ---------- */
+let timerId = null;
+function beginQuiz(){
+  $("who").textContent = S.name + " · " + S.cls;
+  renderQuiz(); show("scr-quiz"); tick();
+  const tb = document.querySelector(".topbar"); document.documentElement.style.setProperty("--tb", tb.offsetHeight + "px");
+  clearInterval(timerId); timerId = setInterval(tick, 1000);
+}
+function tick(){
+  if (!S.inProgress) return;
+  const lim = CONFIG.timeLimitMin * 60000;
+  if (lim){
+    const left = lim - elapsed();
+    $("timer").textContent = "⏱ còn " + fmt(left);
+    $("timer").classList.toggle("low", left < 60000);
+    if (left <= 0) return doSubmit(true);
+  } else $("timer").textContent = "⏱ " + fmt(elapsed());
+  save();
+}
+function answeredCount(){ return ALL.filter((it, i) => isAnswered(i)).length; }
+function isAnswered(i){ const a = (S.answers || {})[i], it = ALL[i];
+  if (it.type === "mcq") return a !== undefined && a !== null;
+  if (it.type === "fill") return !!(a && String(a).trim());
+  if (it.type === "drop") return a !== undefined && a !== null;
+  if (it.type === "order") return !!(a && a.length === it.words.length);
+  return false; }
+function updProg(){ $("prog").textContent = "Đã làm " + answeredCount() + "/" + ALL.length + " câu"; }
+
+function renderQuiz(){
+  const body = $("quizBody"); body.innerHTML = "";
+  let n = 0;
+  SECTIONS.forEach((sec, si) => {
+    const wrapSec = document.createElement("div"); wrapSec.className = "secbox"; body.appendChild(wrapSec);
+    const h = document.createElement("h2"); h.innerHTML = sec.title; wrapSec.appendChild(h);
+    if (sec.note){ const nt = document.createElement("p"); nt.className = "note"; nt.innerHTML = sec.note; wrapSec.appendChild(nt); }
+    let ctx = null, holder = wrapSec;
+    if (sec.bank){ ctx = makeBank(si); wrapSec.appendChild(ctx.bankEl);
+      if (sec.layout === "match"){ holder = document.createElement("div"); holder.className = "mgrid"; wrapSec.appendChild(holder); } }
+    ALL.forEach((it, i) => { if (it.sec !== si) return; n++;
+      if (it.type === "drop"){ holder.appendChild(ctx.item(i, sec.layout === "match")); return; }
+      const box = document.createElement("div"); box.className = "q";
+      const qt = document.createElement("div"); qt.className = "qtext";
+      const num = '<span class="num">' + (i+1) + "</span>";
+      if (it.type === "fill"){
+        const inp = '<input class="blank" data-i="' + i + '" autocomplete="off" autocapitalize="off" spellcheck="false">';
+        qt.innerHTML = num + (/_{3,}/.test(it.q) ? it.q.replace(/_{3,}/, inp) : it.q + "<br>" + inp);
+        box.appendChild(qt);
+        const el = qt.querySelector("input"); el.value = S.answers[i] || "";
+        el.addEventListener("input", () => { S.answers[i] = el.value; save(); updProg(); });
+        ["paste","drop"].forEach(ev => el.addEventListener(ev, e => e.preventDefault()));
+      } else if (it.type === "mcq"){
+        qt.innerHTML = num + it.q; box.appendChild(qt);
+        const opts = document.createElement("div"); opts.className = "opts";
+        it.options.forEach((o, k) => {
+          const b = document.createElement("button"); b.className = "opt" + (S.answers[i] === k ? " sel" : "");
+          b.innerHTML = "<b>" + "ABCDEFG"[k] + "</b><span>" + o + "</span>";
+          b.onclick = () => { S.answers[i] = k; save(); opts.querySelectorAll(".opt").forEach((x, j) => x.classList.toggle("sel", j === k)); updProg(); };
+          opts.appendChild(b);
+        });
+        box.appendChild(opts);
+      } else if (it.type === "order"){
+        qt.innerHTML = num + (it.q || "Sắp xếp các từ thành câu đúng:"); box.appendChild(qt);
+        const line = document.createElement("div"); line.className = "line";
+        const bank = document.createElement("div"); bank.className = "bank";
+        box.appendChild(line); box.appendChild(bank);
+        const draw = () => {
+          const used = S.answers[i] || []; line.innerHTML = ""; bank.innerHTML = "";
+          used.forEach((w, p) => { const t = mkTile(it.words[w]); t.onclick = () => { used.splice(p, 1); S.answers[i] = used; save(); draw(); updProg(); }; line.appendChild(t); });
+          it.words.forEach((w, k) => { if (used.includes(k)) return; const t = mkTile(w);
+            t.onclick = () => { S.answers[i] = used.concat([k]); save(); draw(); updProg(); }; bank.appendChild(t); });
+        };
+        draw();
+      }
+      holder.appendChild(box);
+    });
+    if (ctx) ctx.draw();
+  });
+  updProg();
+}
+
+/* ---------- kéo thả / chạm để điền ---------- */
+function makeBank(si){
+  const sec = SECTIONS[si], bankEl = document.createElement("div"); bankEl.className = "wbank";
+  const slots = {}; let picked = null, readySlot = null;
+  const used = () => ALL.map((it, i) => it.sec === si ? S.answers[i] : undefined).filter(v => v !== undefined && v !== null);
+  function place(i, w){
+    ALL.forEach((it, j) => { if (it.sec === si && S.answers[j] === w) S.answers[j] = null; });
+    S.answers[i] = w; picked = null; readySlot = null; save(); draw(); updProg();
+  }
+  function draw(){
+    const u = used(); bankEl.innerHTML = "";
+    sec.bank.forEach((w, k) => { if (u.includes(k)) return;
+      const c = document.createElement("button"); c.className = "chip" + (picked === k ? " pick" : ""); c.textContent = w; c.draggable = true;
+      c.onclick = () => { if (readySlot !== null) return place(readySlot, k); picked = picked === k ? null : k; draw(); };
+      c.addEventListener("dragstart", e => { e.dataTransfer.setData("text/plain", String(k)); });
+      bankEl.appendChild(c); });
+    Object.keys(slots).forEach(i => { const s = slots[i], v = S.answers[i];
+      const full = v !== undefined && v !== null; s.className = "slot" + (full ? " full" : "") + (readySlot == i ? " ready" : "");
+      s.textContent = full ? sec.bank[v] : (picked !== null ? "chạm để đặt" : "    "); });
+  }
+  function item(i, match){
+    const s = document.createElement("span"); s.className = "slot"; slots[i] = s;
+    s.onclick = () => {
+      const v = S.answers[i];
+      if (v !== undefined && v !== null){ S.answers[i] = null; save(); draw(); updProg(); return; }
+      if (picked !== null) return place(i, picked);
+      readySlot = readySlot === i ? null : i; draw();
+    };
+    s.addEventListener("dragover", e => { e.preventDefault(); s.classList.add("over"); });
+    s.addEventListener("dragleave", () => s.classList.remove("over"));
+    s.addEventListener("drop", e => { e.preventDefault(); const k = parseInt(e.dataTransfer.getData("text/plain"), 10); if (!isNaN(k)) place(i, k); });
+    const num = '<span class="num">' + (i+1) + "</span>";
+    const box = document.createElement("div");
+    if (match){ box.className = "mrow"; box.innerHTML = num + '<span class="mean">' + ALL[i].q + "</span>"; box.appendChild(s); }
+    else { box.className = "q"; const qt = document.createElement("div"); qt.className = "qtext";
+      const parts = ALL[i].q.split(/_{3,}/); qt.innerHTML = num + parts[0]; qt.appendChild(s);
+      qt.insertAdjacentHTML("beforeend", parts.slice(1).join("___")); box.appendChild(qt); }
+    return box;
+  }
+  return { bankEl, item, draw };
+}
+function mkTile(w){ const t = document.createElement("button"); t.className = "tile"; t.textContent = w; return t; }
+
+/* ---------- nộp bài ---------- */
+$("btnSubmit").onclick = () => {
+  const left = ALL.length - answeredCount();
+  $("modalMsg").innerHTML = left ? "Em còn <b>" + left + " câu chưa làm</b>. Em có chắc muốn nộp bài không?"
+                                 : "Em đã làm hết " + ALL.length + " câu. Nộp bài ngay?";
+  $("modal").classList.add("on");
+};
+$("btnCancel").onclick = () => $("modal").classList.remove("on");
+$("btnConfirm").onclick = () => { $("modal").classList.remove("on"); doSubmit(false); };
+
+const norm = s => String(s == null ? "" : s).toLowerCase().replace(/[’‘`]/g, "'").replace(/\s+/g, " ").trim().replace(/[.!?,]+$/, "").trim();
+function grade(){
+  const items = ALL.map((it, i) => {
+    const a = S.answers[i]; let ok = false, given = "", right = "";
+    if (it.type === "mcq"){
+      ok = a === it.a; given = a == null ? "" : "ABCDEFG"[a] + ". " + it.options[a].replace(/<[^>]+>/g, "");
+      right = "ABCDEFG"[it.a] + ". " + it.options[it.a];
+    } else if (it.type === "drop"){
+      given = a == null ? "" : SECTIONS[it.sec].bank[a]; ok = given !== "" && norm(given) === norm(it.a); right = it.a;
+    } else {
+      const alts = String(it.a).split("|");
+      given = it.type === "order" ? (a || []).map(k => it.words[k]).join(" ") : (a || "").trim();
+      ok = given !== "" && alts.some(x => norm(x) === norm(given));
+      right = alts[0];
+    }
+    return { ok, given, right };
+  });
+  const correct = items.filter(x => x.ok).length;
+  return { items, correct, total: ALL.length, score: Math.round(correct / ALL.length * CONFIG.scoreScale * 100) / 100, timeMs: elapsed() };
+}
+function doSubmit(auto){
+  if (!S.inProgress) return;
+  clearInterval(timerId);
+  if (away){ S.awayMs += Date.now() - awayStart; away = false; }
+  log(auto ? "Hết giờ – hệ thống tự nộp" : "Nộp bài");
+  S.result = grade(); S.inProgress = false; S.submittedAt = Date.now(); save();
+  $("guard").classList.remove("on"); exitFS();
+  renderResult(); show("scr-result");
+  const st = $("sendStatus");
+  if (!CONFIG.sheetUrl){ st.className = "send bad"; st.textContent = "(Chưa cài link Google Sheets – kết quả chưa được gửi cho cô)"; return; }
+  st.className = "send wait"; st.textContent = "Đang gửi kết quả cho cô…";
+  send(payload(auto ? "Hết giờ – tự nộp" : "Đã nộp")).then(ok => {
+    st.className = "send " + (ok ? "ok" : "bad");
+    st.innerHTML = ok ? "✓ Đã gửi kết quả cho cô." : '✗ Chưa gửi được (mất mạng?). <button class="btn ghost" id="btnRetrySend">Gửi lại</button>';
+    if (!ok) $("btnRetrySend").onclick = () => { st.textContent = "Đang gửi lại…"; flush().then(() => {
+      const left = queue().length; st.className = "send " + (left ? "bad" : "ok");
+      st.textContent = left ? "✗ Vẫn chưa gửi được. Em kiểm tra mạng rồi mở lại trang này." : "✓ Đã gửi kết quả cho cô."; }); };
+  });
+}
+
+/* ---------- kết quả ---------- */
+function renderResult(){
+  const r = S.result;
+  $("scoreCard").innerHTML =
+    '<div class="muted">' + S.name + " · " + S.cls + " · Lần làm " + S.attempts + "</div>" +
+    '<div class="big">' + r.score + "<span style=\"font-size:1.6rem;color:var(--muted)\">/" + CONFIG.scoreScale + "</span></div>" +
+    '<div class="stats">' +
+      '<div class="stat"><strong>' + r.correct + "/" + r.total + "</strong>câu đúng</div>" +
+      '<div class="stat"><strong>' + fmt(r.timeMs) + "</strong>thời gian làm</div>" +
+      '<div class="stat"><strong>' + S.fsExits + "</strong>lần thoát toàn màn hình</div>" +
+      '<div class="stat"><strong>' + S.leaves + "</strong>lần rời khỏi bài</div>" +
+    "</div>" + '<div class="send" id="sendStatus"></div>';
+  const body = $("resultBody"); body.innerHTML = "";
+  SECTIONS.forEach((sec, si) => {
+    const h = document.createElement("h2"); h.innerHTML = sec.title; body.appendChild(h);
+    ALL.forEach((it, i) => { if (it.sec !== si) return; const x = r.items[i];
+      const d = document.createElement("div"); d.className = "q r" + (x.ok ? "" : " no");
+      const qtxt = it.type === "drop" && SECTIONS[si].layout === "match" ? "Nghĩa: <b>" + it.q + "</b>" : it.type === "order" ? (it.q || "Sắp xếp các từ: <i>" + it.words.join(" / ") + "</i>") : it.q;
+      d.innerHTML = '<div class="qtext"><span class="num">' + (i+1) + "</span>" + qtxt +
+        '<span class="tag">' + (x.ok ? "✓ Đúng" : "✗ Sai") + "</span></div>" +
+        '<div class="ans">Em trả lời: <span class="you">' + (x.given ? esc(x.given) : "<i>(bỏ trống)</i>") + "</span>" +
+        (x.ok ? "" : '<br>Đáp án đúng: <span class="right">' + x.right + "</span>") + "</div>" +
+        (it.exp ? '<div class="exp">💡 ' + it.exp + "</div>" : "");
+      body.appendChild(d);
+    });
+  });
+  $("resultBtns").innerHTML = CONFIG.allowRetry ? '<button class="btn ghost" id="btnAgain">Về trang đầu / Làm lại</button>' : "";
+  if (CONFIG.allowRetry) $("btnAgain").onclick = startScreen;
+}
+function esc(s){ return String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;" }[c])); }
+
+/* ---------- rời trang khi đang làm ---------- */
+window.addEventListener("pagehide", () => { if (S.inProgress){ save(); beacon(payload("Rời trang khi đang làm")); } });
+
+/* ---------- khởi động ---------- */
+flush();
+if (S.inProgress){
+  const gap = Date.now() - (S.lastSaved || Date.now());
+  S.reloads++; S.awayMs += gap;
+  log("Tải lại/mở lại trang (vắng " + Math.round(gap/1000) + " giây)"); save();
+  $("resumeMsg").innerHTML = "Bài của <b>" + S.name + "</b> (" + S.cls + ") đã làm được " + answeredCount() + "/" + ALL.length + " câu.";
+  show("scr-resume");
+} else startScreen();
+</script>
+</body>
+</html>
